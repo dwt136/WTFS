@@ -4,9 +4,13 @@ Mapping between learn/learn.cic of Tsinghua online learning system and local fil
 
 ## Requirements
 python2
+
 fusepy
+
 pyquery
+
 webob
+
 
 ## Usage
 Mounting learn to local file system, run:
