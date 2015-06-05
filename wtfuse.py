@@ -36,9 +36,9 @@ class WTFuse(Operations):
             raise FuseOSError(errno.ENOENT)
         print t, path
         mode = S_IFREG | 0444
-        if t == 'HOMEWORK_ATTACH':
+        if t == 'HOMEWORK_SUBMIT':
             mode = S_IFDIR | 0777
-        elif t == 'HOMEWORK_ATTACH_FILE':
+        elif t == 'HOMEWORK_SUBMIT_FILE':
             mode = S_IFREG | 0666
         elif is_dir_type(t):
             mode = S_IFDIR | 0555
