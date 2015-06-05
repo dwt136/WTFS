@@ -3,13 +3,6 @@ from pyquery import PyQuery as pq
 import urllib, urllib2, cookielib
 
 
-ok = dict(success=1)
-
-
-def fail(error=''):
-    return dict(success=0, error=error)
-
-
 class Learn():
 
     def _get(self, url, **kwargs):
@@ -41,19 +34,23 @@ class Learn():
     def login(self, username, password):
         username = username.strip()
         if len(username) == 0:
-            return fail('No username is given')
+            print 'No username is given'
+            return False
         if len(password) == 0:
-            return fail('No password is given')
+            print 'No password is given'
+            return False
         res = self._post(OLD_URL['LOGIN'], userid=username, userpass=password).html()
         if res.find('window.alert') >= 0:
-            return fail('Fail Authorization')
+            print 'Fail Authorization'
+            return False
         self._post(NEW_URL['LOGIN'], i_user=username, i_pass=password)
-        return ok
+        return True
 
     def read_to_mem(self):
         d = self._get(OLD_URL['COURSE'])
         courses = d('#info_1 a')
         self.courses = [i.text.strip() for i in courses]
+        return True
 
     def get_courses(self):
         return self.courses
