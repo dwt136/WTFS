@@ -8,13 +8,12 @@ from learn import Learn
 def main(mountpoint, username, password):
     print 'Logging in'
     l = Learn()
-    res = l.login(username, password)
-    if not res['success']:
-        print res['error']
+    if not l.login(username, password):
         return
     print 'Login successfully'
     print 'Reading data'
-    l.read_to_mem()
+    if not l.read_to_mem():
+        return
     print 'OK'
     FUSE(WTFuse(l, mountpoint), mountpoint, foreground=True)
 
