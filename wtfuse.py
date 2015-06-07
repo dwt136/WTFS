@@ -117,7 +117,6 @@ class WTFuse(Operations):
         name = learn.dealName(path[path.rfind('/') + 1 : ])
         self.file_cache[parent] = ('', name)
         self.file_cache[parent + '/' + name] = ('', name)
-        print 'mode', mode
         return 0
 
     def open(self, path, flags):
